@@ -44,13 +44,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                 User user = new User(userFirstname, userLastname, userEmail, userPassword, userPlace);
                 user.create();
-
-                //strat new activity when onclick register with message
-                Intent intent = new Intent(v.getContext(), MainActivity.class);
-                intent.putExtra("userCreated", "user created");
-                startActivity(intent);
-
-
             }
         });
 

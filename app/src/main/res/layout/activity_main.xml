@@ -8,16 +8,6 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textMessage"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:textColor="#a4c639"
-        android:layout_gravity="center">
-    </TextView>
-
-    <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"

@@ -30,15 +30,6 @@ public class MainActivity extends AppCompatActivity {
         email = findViewById(R.id.input_email);
         password = findViewById(R.id.input_password);
 
-        message = findViewById(R.id.textMessage);
-
-        //get intent values
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            String value = extras.getString("userCreated");
-            message.setText(value);
-        }
-
         logIn = findViewById(R.id.btn_login);
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override

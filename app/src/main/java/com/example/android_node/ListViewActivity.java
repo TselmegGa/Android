@@ -5,13 +5,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.android_node.models.Activity;
+import com.example.android_node.models.ActivityOnclickHandler;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class ListViewActivity extends AppCompatActivity {
+public class ListViewActivity extends AppCompatActivity{
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -31,6 +33,10 @@ public class ListViewActivity extends AppCompatActivity {
 
         // specify an adapter
         List<Activity> activityList = Activity.getAllActivities();
+
+        mAdapter = new ActivityRecycleViewAdapter(activityList);
+        //connect it to the recyclerView
+        mRecyclerView.setAdapter(mAdapter);
 
 
     }
