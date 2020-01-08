@@ -4,7 +4,8 @@
   "description": "Android app with node.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node node_modules/mocha/bin/_mocha ./node/test/*test.js --reporter spec --exit",
+    "start": "nodemon src/server.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,14 @@
   },
   "homepage": "https://github.com/TselmegGa/Android#readme",
   "dependencies": {
-    "androidjs": "^2.0.1"
+    "androidjs": "^2.0.1",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "express": "^4.17.1",
+    "husky": "^4.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^7.0.0",
+    "mssql": "^6.0.1",
+    "nodemon": "^2.0.2"
   }
 }
