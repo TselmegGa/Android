@@ -36,6 +36,7 @@ public final class NetworkUtils {
         }
         return url;
     }
+
     public static URL registerUrl() {
         Uri builtUri = Uri.parse(BASE_URL).buildUpon()
                 .appendPath(REGISTER_URL)

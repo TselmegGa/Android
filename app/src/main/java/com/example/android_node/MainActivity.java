@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.android_node.models.User;
+import com.example.android_node.tasks.LogInAsyncTask;
+import com.example.android_node.tasks.RegisterAsyncTask;
 
 import java.util.ArrayList;
 
@@ -38,7 +40,10 @@ public class MainActivity extends AppCompatActivity {
                 String userMail = email.getText().toString();
                 String userPassword = password.getText().toString();
 
-                
+                //send data to log in
+                String[] str = {userMail + "||" + userPassword};
+                LogInAsyncTask task = new LogInAsyncTask(MainActivity.this);
+                task.execute(str);
             }
         });
     }
