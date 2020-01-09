@@ -9,6 +9,10 @@ public class User {
     private String password;
     private  String place;
 
+    public User() {
+
+    }
+
     public User(String firstname, String lastname, String email, String password, String place) {
         this.firstname = firstname;
         this.lastname = lastname;

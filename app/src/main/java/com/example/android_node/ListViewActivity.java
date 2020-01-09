@@ -5,12 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.View;
 
 import com.example.android_node.models.Activity;
-import com.example.android_node.models.ActivityOnclickHandler;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class ListViewActivity extends AppCompatActivity{

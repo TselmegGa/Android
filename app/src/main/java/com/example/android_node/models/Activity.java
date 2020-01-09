@@ -14,15 +14,6 @@ public class Activity {
     private int maxParticipant;
     private List<User> participants;
 
-    public Activity(String admin, String name, String description, Date startDate, Date endDate, int maxParticipant) {
-        this.admin = admin;
-        this.name = name;
-        this.description = description;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.maxParticipant = maxParticipant;
-    }
-
     public static List<Activity> getAllActivities(){
         //get all activities from database
         return null;

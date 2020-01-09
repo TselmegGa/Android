@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_node.models.Activity;
-import com.example.android_node.models.ActivityOnclickHandler;
 
 import java.util.List;
 
