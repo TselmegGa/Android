@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.android_node.models.User;
+import com.example.android_node.tasks.RegisterAsyncTask;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -42,8 +43,10 @@ public class RegisterActivity extends AppCompatActivity {
                 String userPassword = password.getText().toString();
                 String userPlace = place.getText().toString();
 
-                User user = new User(userFirstname, userLastname, userEmail, userPassword, userPlace);
-                user.create();
+                //send data
+                String[] str = {userFirstname + "||" + userLastname + "||" + userEmail + "||" + userPassword + "||" + userPlace};
+                RegisterAsyncTask task = new RegisterAsyncTask(RegisterActivity.this);
+                task.execute(str);
             }
         });
 

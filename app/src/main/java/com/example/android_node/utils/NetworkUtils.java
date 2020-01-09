@@ -36,8 +36,22 @@ public final class NetworkUtils {
         }
         return url;
     }
+    public static URL registerUrl() {
+        Uri builtUri = Uri.parse(BASE_URL).buildUpon()
+                .appendPath(REGISTER_URL)
+                .build();
 
-    private static void sendGET(URL url) throws IOException {
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e){
+            e.printStackTrace();
+        }
+        return url;
+    }
+
+    //getreq
+    public static void sendGET(URL url) throws IOException {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         int responseCode = con.getResponseCode();
@@ -61,7 +75,7 @@ public final class NetworkUtils {
 
     }
 
-    private static void sendPOST(URL url, String params) throws IOException {
+    public static void sendPOST(URL url, String params) throws IOException {
 
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
