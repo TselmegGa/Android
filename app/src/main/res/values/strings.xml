@@ -8,5 +8,7 @@
     <string name="register">Register</string>
     <string name="back">Back</string>
     <string name="password">password</string>
+    <string name="add">add</string>
+    <string name="details">Details</string>
 
 </resources>
