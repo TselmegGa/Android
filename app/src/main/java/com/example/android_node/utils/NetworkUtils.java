@@ -51,6 +51,20 @@ public final class NetworkUtils {
         return url;
     }
 
+    public static URL activityUrl() {
+        Uri builtUri = Uri.parse(BASE_URL).buildUpon()
+                .appendPath(ACTIVITY_URL)
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e){
+            e.printStackTrace();
+        }
+        return url;
+    }
+
     //getreq
     public static void sendGET(URL url) throws IOException {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();

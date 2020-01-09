@@ -34,7 +34,7 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
 
     @Override
     public void onBindViewHolder(@NonNull ActivityRecycleViewAdapter.ViewHolder holder, int position) {
-        // holder is the (already created) drink_list_item (= ViewHolder-object)
+        // holder is the (already created) activity_list_item (= ViewHolder-object)
         // - gets element from your dataset at this position
         // - replaces the contents of the view with that element
         final Activity activity = mActivities.get(position);
