@@ -2,16 +2,16 @@ package com.example.android_node.tasks;
 
 import android.os.AsyncTask;
 
-import com.example.android_node.ListViewActivity;
+import com.example.android_node.ActivityActivity;
 import com.example.android_node.utils.NetworkUtils;
 
 import java.net.URL;
 
-public class ActivityAsyncTask extends AsyncTask<String, Void, String> {
+public class GetActivityAsyncTask extends AsyncTask<String, Void, String> {
 
-    private ListViewActivity main;
+    private ActivityActivity main;
 
-    public ActivityAsyncTask(ListViewActivity main) {
+    public GetActivityAsyncTask(ActivityActivity main) {
         this.main = main;
     }
 

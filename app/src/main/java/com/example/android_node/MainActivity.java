@@ -3,6 +3,7 @@ package com.example.android_node;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -44,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
                 String[] str = {userMail + "||" + userPassword};
                 LogInAsyncTask task = new LogInAsyncTask(MainActivity.this);
                 task.execute(str);
+
+                // when task is running then start next actvitiy
+                if(task.getStatus() != AsyncTask.Status.RUNNING){
+                    Intent i = new Intent(MainActivity.this, ActivityActivity.class);
+                    startActivity(i);
+                }
             }
         });
     }

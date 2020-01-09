@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.example.android_node.models.Activity;
-import com.example.android_node.tasks.ActivityAsyncTask;
+import com.example.android_node.tasks.GetActivityAsyncTask;
 
 import java.util.List;
 
-public class ListViewActivity extends AppCompatActivity{
+public class ActivityActivity extends AppCompatActivity{
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -36,7 +36,7 @@ public class ListViewActivity extends AppCompatActivity{
         //connect it to the recyclerView
         mRecyclerView.setAdapter(mAdapter);
 
-        ActivityAsyncTask activityAsyncTask = new ActivityAsyncTask(ListViewActivity.this);
+        GetActivityAsyncTask activityAsyncTask = new GetActivityAsyncTask(ActivityActivity.this);
         activityAsyncTask.execute("Get all activities");
 
 
