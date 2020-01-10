@@ -20,7 +20,6 @@ public class ActivityActivity extends AppCompatActivity implements ActivityOncli
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    Button readButton;
     private int itemId;
 
     @Override
@@ -29,6 +28,8 @@ public class ActivityActivity extends AppCompatActivity implements ActivityOncli
             Intent i = new Intent(ActivityActivity.this, ActivityReadActivity.class);
             i.putExtra("id", itemIndex);
             startActivity(i);
+        }else if (view == view.findViewById(R.id.btn_deleteActivity)){
+
         }
     }
 

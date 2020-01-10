@@ -10,5 +10,6 @@
     <string name="password">password</string>
     <string name="add">add</string>
     <string name="details">Details</string>
+    <string name="delete">Delete</string>
 
 </resources>
