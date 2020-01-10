@@ -11,9 +11,7 @@ import android.widget.EditText;
 import com.example.android_node.models.User;
 import com.example.android_node.tasks.RegisterAsyncTask;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
+import org.json.JSONObject;
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText firstname, lastname, email, password, place;
@@ -42,17 +40,33 @@ public class RegisterActivity extends AppCompatActivity {
                 String userEmail = email.getText().toString();
                 String userPassword = password.getText().toString();
                 String userPlace = place.getText().toString();
+                String jsonString = null;
+                try {
+                     jsonString = new JSONObject()
+                            .put("firstname", userFirstname)
+                            .put("lastname", userLastname)
+                            .put("email", userEmail)
+                            .put("password", userPassword)
+                            .put("location", userPlace).toString();
+                } catch(org.json.JSONException e) {
+                    throw new RuntimeException(e);
+                }
 
-                //send data
-                String[] str = {userFirstname + "||" + userLastname + "||" + userEmail + "||" + userPassword + "||" + userPlace};
+
+
                 RegisterAsyncTask task = new RegisterAsyncTask(RegisterActivity.this);
-                task.execute(str);
+                task.execute(jsonString);
             }
         });
 
     }
 
     public void back(View view) {
+        // kills activity and takes user to mainactivity
+        Intent intent = new Intent(this, MainActivity.class);
+        finish();
+    }
+    public void back() {
         // kills activity and takes user to mainactivity
         Intent intent = new Intent(this, MainActivity.class);
         finish();

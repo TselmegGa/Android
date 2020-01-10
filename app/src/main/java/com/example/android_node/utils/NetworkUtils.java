@@ -17,39 +17,12 @@ import java.net.URLConnection;
 import java.util.Scanner;
 
 public final class NetworkUtils {
-    private static final String TAG = NetworkUtils.class.getSimpleName();
-    private static final String BASE_URL = "http://localhost:3000/";
-    private static final String ACTIVITY_URL = "api/activities";
-    private static final String lOGIN_URL = "api/login";
-    private static final String REGISTER_URL = "api/register";
+    public static final String TAG = NetworkUtils.class.getSimpleName();
+    public static final String BASE_URL = "https://who-is-going.herokuapp.com/api/";
+    public static final String ACTIVITY_URL = "activities";
+    public static final String LOGIN_URL = "login";
+    public static final String REGISTER_URL = "register";
 
-    public static URL loginUrl() {
-        Uri builtUri = Uri.parse(BASE_URL).buildUpon()
-                .appendPath(lOGIN_URL)
-                .build();
-
-        URL url = null;
-        try {
-            url = new URL(builtUri.toString());
-        } catch (MalformedURLException e){
-            e.printStackTrace();
-        }
-        return url;
-    }
-
-    public static URL registerUrl() {
-        Uri builtUri = Uri.parse(BASE_URL).buildUpon()
-                .appendPath(REGISTER_URL)
-                .build();
-
-        URL url = null;
-        try {
-            url = new URL(builtUri.toString());
-        } catch (MalformedURLException e){
-            e.printStackTrace();
-        }
-        return url;
-    }
 
     public static URL activityUrl() {
         Uri builtUri = Uri.parse(BASE_URL).buildUpon()
@@ -69,6 +42,7 @@ public final class NetworkUtils {
     public static void sendGET(URL url) throws IOException {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
+        con.setRequestProperty("Content-Type", "application/json");
         int responseCode = con.getResponseCode();
         System.out.println("GET Response Code :: " + responseCode);
         if (responseCode == HttpURLConnection.HTTP_OK) { // success
@@ -90,10 +64,11 @@ public final class NetworkUtils {
 
     }
 
-    public static void sendPOST(URL url, String params) throws IOException {
+    public static String sendPOST(URL url, String params) throws IOException {
 
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
+        con.setRequestProperty("Content-Type", "application/json");
 
         // For POST only - START
         con.setDoOutput(true);
@@ -102,7 +77,7 @@ public final class NetworkUtils {
         os.flush();
         os.close();
         // For POST only - END
-
+        System.out.println("POST url:: " + url);
         int responseCode = con.getResponseCode();
         System.out.println("POST Response Code :: " + responseCode);
 
@@ -118,9 +93,9 @@ public final class NetworkUtils {
             in.close();
 
             // print result
-            System.out.println(response.toString());
+            return response.toString();
         } else {
-            System.out.println("POST request not worked");
+            return "POST Failed";
         }
     }
 
