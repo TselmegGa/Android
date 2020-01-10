@@ -1,45 +1,75 @@
 const conn = require('../database/connection')
 const sql = require('mssql')
+
 var getAll = (req, res) => {
   conn.then(pool =>{
    return pool.request()
-       .query('SELECT * from dbo.Gebruiker')
+       .query('SELECT * from dbo.Activity')
  }).then(result =>{
    res.status(200).json({ result:result.recordset})
  }).catch(err =>{
-   console.log(err)
+   res.status(err.code).json(err)
  })
-
 }
 
 var get = (req, res, next) => {
-
-  const id = req.params.movieId
+  const id = req.params.id
   conn.then(pool =>{
    return pool.request()
       .input('input', sql.Int, id)
-      .query('SELECT * from dbo.Boek where ISBN = @input')
+      .query('SELECT * from dbo.Activity where id = @input')
  }).then(result =>{
    res.status(200).json({ result:result.recordset})
  }).catch(err =>{
-   console.log(err)
+   res.status(err.code).json(err)
  })
 }
 
 var create = (req, res, next) => {
-  // hier komt in het request een movie binnen.
-  const movie = req.body
+  conn.then(pool =>{
+   return pool.request()
+      .input('name', req.body.name)
+      .input('description', req.body.description)
+      .input('starttime', req.body.starttime)
+      .input('endtime', req.body.endtime)
+      .input('max', sql.Int, req.body.max)
+      .query('insert into dbo.Activity values (@name, @description, @starttime, @endtime, @max)')
+ }).then(result =>{
+   res.status(200).json({ result:result.recordset})
+ }).catch(err =>{
+   res.status(err.code).json(err)
+ })
 
 }
 var remove = (req, res, next) => {
-  // hier komt in het request een movie binnen.
-  const movie = req.body
+  const id = req.params.id
+  conn.then(pool =>{
+   return pool.request()
+      .input('input', sql.Int, id)
+      .query('delete from dbo.Activity where id = @input')
+ }).then(result =>{
+   res.status(200).json({ result:result.recordset})
+ }).catch(err =>{
+  res.status(err.code).json(err)
+ })
 
 }
 var update = (req, res, next) => {
-  // hier komt in het request een movie binnen.
-  const movie = req.body
-
+  const id = req.params.id
+  conn.then(pool =>{
+   return pool.request()
+      .input('name', req.body.name)
+      .input('description', req.body.description)
+      .input('starttime', req.body.starttime)
+      .input('endtime', req.body.endtime)
+      .input('max', sql.Int, req.body.max)
+      .input('id', sql.Int, id)
+      .query('update dbo.Activity set name = @name, description = @description, starttime = @starttime, endtime = @endtime, max = @max where id = @id')
+  }).then(result =>{
+   res.status(200).json({ result:result.recordset})
+  }).catch(err =>{
+   res.status(err.code).json(err)
+  })
 }
 module.exports = {
 getAll: getAll,
