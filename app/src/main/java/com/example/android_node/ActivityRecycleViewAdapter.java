@@ -42,7 +42,6 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
         // - replaces the contents of the view with that element
         final Activity activity = mActivities.get(position);
 
-        holder.admin.setId(activity.getAdmin());
         holder.name.setText(activity.getName());
         holder.description.setText(activity.getDescription());
         holder.startDate.setText((CharSequence) activity.getStartDate());
@@ -69,8 +68,6 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
         // ViewHolder is the view of a activity_list_view
         // one drink_list_item contains 3 views
         // Provide a reference to each view in the activity_list_item
-
-        private TextView admin;
         private TextView name;
         private TextView description;
         private TextView startDate;
@@ -83,7 +80,6 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            admin = (TextView) itemView.findViewById(R.id.activity_item_admin);
             name = (TextView) itemView.findViewById(R.id.activity_item_name);
             description = (TextView) itemView.findViewById(R.id.activity_item_description);
             startDate = (TextView) itemView.findViewById(R.id.activity_item_startDate);
