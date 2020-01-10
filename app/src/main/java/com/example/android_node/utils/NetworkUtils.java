@@ -16,6 +16,7 @@ public final class NetworkUtils {
     public static final String ACTIVITY_URL = "activities";
     public static final String LOGIN_URL = "login";
     public static final String REGISTER_URL = "register";
+    public static final String PARTICIPANT_URL = "register";
     //getreq
     public static String sendGET(URL url, String token) throws IOException {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
