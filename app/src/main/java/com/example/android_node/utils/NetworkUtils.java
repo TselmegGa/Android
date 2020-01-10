@@ -20,6 +20,7 @@ public final class NetworkUtils {
     private static final String TAG = NetworkUtils.class.getSimpleName();
     private static final String BASE_URL = "http://localhost:3000/";
     private static final String ACTIVITY_URL = "api/activities";
+    private static final String READACTIVITY_URL = "api/activities/:id";
     private static final String lOGIN_URL = "api/login";
     private static final String REGISTER_URL = "api/register";
 
@@ -54,6 +55,20 @@ public final class NetworkUtils {
     public static URL activityUrl() {
         Uri builtUri = Uri.parse(BASE_URL).buildUpon()
                 .appendPath(ACTIVITY_URL)
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e){
+            e.printStackTrace();
+        }
+        return url;
+    }
+
+    public static URL readActivityUrl() {
+        Uri builtUri = Uri.parse(BASE_URL).buildUpon()
+                .appendPath(READACTIVITY_URL)
                 .build();
 
         URL url = null;

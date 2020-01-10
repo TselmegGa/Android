@@ -15,8 +15,11 @@ import java.util.List;
 public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRecycleViewAdapter.ViewHolder> {
     private List<Activity> mActivities;
 
-    public ActivityRecycleViewAdapter(List<Activity> activities) {
+    private final ActivityOnclickHandler mClickHandler;
+
+    public ActivityRecycleViewAdapter(List<Activity> activities, ActivityOnclickHandler mClickHandler) {
         this.mActivities = activities;
+        this.mClickHandler = mClickHandler;
     }
 
     @NonNull
@@ -61,7 +64,7 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
 
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // ViewHolder is the view of a activity_list_view
         // one drink_list_item contains 3 views
         // Provide a reference to each view in the activity_list_item
@@ -80,6 +83,12 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
             description = (TextView) itemView.findViewById(R.id.activity_item_description);
             startDate = (TextView) itemView.findViewById(R.id.activity_item_startDate);
             endDate = (TextView) itemView.findViewById(R.id.activity_item_endDate);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int index = getAdapterPosition();
+            mClickHandler.onActivityClick(v, index);
         }
     }
 }
