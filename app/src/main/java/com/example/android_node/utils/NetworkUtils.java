@@ -101,7 +101,7 @@ public final class NetworkUtils {
         }
     }
     public static String sendPOSTWithToken(URL url, String params, String token) throws IOException {
-
+        System.out.println(params);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/json");

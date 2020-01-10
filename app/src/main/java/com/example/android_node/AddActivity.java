@@ -2,6 +2,7 @@ package com.example.android_node;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -50,9 +51,9 @@ public class AddActivity extends AppCompatActivity {
                     jsonString = new JSONObject()
                             .put("name", activityName)
                             .put("description", activityDescription)
-                            .put("startDate", activityStart)
-                            .put("endDate", activityEnd)
-                            .put("particopationLimit", activityLimit).toString();
+                            .put("starttime", activityStart)
+                            .put("endtime", activityEnd)
+                            .put("max", activityLimit).toString();
                 } catch(org.json.JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -61,4 +62,9 @@ public class AddActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void startNewActivity(){
+        Intent i = new Intent(AddActivity.this, ActivityActivity.class);
+        startActivity(i);
+    };
 }

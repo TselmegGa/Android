@@ -36,4 +36,9 @@ public class CreateActivityAsyncTask extends AsyncTask<String, Void, String> {
 
         return response;
     }
+
+    @Override
+    protected void onPostExecute(String s) {
+        main.startNewActivity();
+    }
 }
