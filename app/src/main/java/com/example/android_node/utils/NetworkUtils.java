@@ -22,12 +22,27 @@ public final class NetworkUtils {
     public static final String ACTIVITY_URL = "activities";
     public static final String LOGIN_URL = "login";
     public static final String REGISTER_URL = "register";
-    private static final String READACTIVITY_URL = "api/activities/:id";
+    private static final String READACTIVITY_URL = "activities/:id";
+    private static final String DELETEACTIVITY_URL = "activities/:id";
 
 
     public static URL activityUrl() {
         Uri builtUri = Uri.parse(BASE_URL).buildUpon()
                 .appendPath(ACTIVITY_URL)
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e){
+            e.printStackTrace();
+        }
+        return url;
+    }
+
+    public static URL deleteActivityUrl() {
+        Uri builtUri = Uri.parse(BASE_URL).buildUpon()
+                .appendPath(DELETEACTIVITY_URL)
                 .build();
 
         URL url = null;
@@ -79,6 +94,16 @@ public final class NetworkUtils {
 
     }
 
+    public static void sendDelete (URL url) throws IOException{
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("DELETE");
+        con.setRequestProperty("Content-Type", "application/json");
+        int responseCode = con.getResponseCode();
+        System.out.println("Delete Response Code :: " + responseCode);
+
+        con.connect();
+    }
+
     public static String sendPOST(URL url, String params) throws IOException {
 
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -113,5 +138,7 @@ public final class NetworkUtils {
             return "POST Failed";
         }
     }
+
+
 
 }
