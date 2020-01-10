@@ -22,6 +22,8 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
         this.mClickHandler = mClickHandler;
     }
 
+
+
     @NonNull
     @Override
     public ActivityRecycleViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

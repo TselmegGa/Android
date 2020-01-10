@@ -67,7 +67,7 @@ public final class NetworkUtils {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("Content-Type", "application/json");
-        con.setRequestProperty("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3RfbmFtZSI6ImJvYiIsImxhc3RfbmFtZSI6InRvbSIsImVtYWlsIjoidG9tQHRvbS5jb20iLCJwYXNzd29yZCI6IjEyMzQ1NiIsImxvY2F0aW9uIjoiYm9zdG9uIiwiaWF0IjoxNTc4NjcwODg5LCJleHAiOjE1Nzg2NzQ0ODl9.QnyeP8oGdHpingdepuKRyJogKTDWGhbGQ6uiVidbpsQ");
+        con.setRequestProperty("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3RfbmFtZSI6ImJvYiIsImxhc3RfbmFtZSI6InRvbSIsImVtYWlsIjoidG9tQHRvbS5jb20iLCJwYXNzd29yZCI6IjEyMzQ1NiIsImxvY2F0aW9uIjoiYm9zdG9uIiwiaWF0IjoxNTc4Njc2OTI3LCJleHAiOjE1Nzg2OTg1Mjd9.qbH_ZOs_uaMvJHkMv4wf24YxzRcmY0HoEEs2Sw9aEuQ");
         int responseCode = con.getResponseCode();
         System.out.println("GET Response Code :: " + responseCode);
         if (responseCode == HttpURLConnection.HTTP_OK) { // success

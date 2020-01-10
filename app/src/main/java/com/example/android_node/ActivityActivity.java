@@ -1,13 +1,17 @@
 package com.example.android_node;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.android_node.models.Activity;
 import com.example.android_node.tasks.GetActivityAsyncTask;
@@ -19,6 +23,7 @@ public class ActivityActivity extends AppCompatActivity implements ActivityOncli
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +41,26 @@ public class ActivityActivity extends AppCompatActivity implements ActivityOncli
         GetActivityAsyncTask activityAsyncTask = new GetActivityAsyncTask(ActivityActivity.this);
         activityAsyncTask.execute("Get all activities");
     }
+
     @Override
-    public void onActivityClick(View view, int itemIndex) {
-        if (view == view.findViewById(R.id.btn_readActivity)) {
-            Intent i = new Intent(ActivityActivity.this, ActivityReadActivity.class);
-            i.putExtra("id", itemIndex);
-            startActivity(i);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_activities_list, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.new_activity:
+
+                    Intent intent = new Intent(this, AddActivity.class);
+                    startActivity(intent);
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
@@ -50,5 +69,14 @@ public class ActivityActivity extends AppCompatActivity implements ActivityOncli
         mAdapter = new ActivityRecycleViewAdapter(activities, this);
         //connect it to the recyclerView
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onActivityClick(View view, int itemIndex) {
+        if (view == view.findViewById(R.id.btn_readActivity)) {
+            Intent i = new Intent(ActivityActivity.this, ActivityReadActivity.class);
+            i.putExtra("id", itemIndex);
+            startActivity(i);
+        }
     }
 }
