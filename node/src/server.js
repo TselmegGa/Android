@@ -6,6 +6,7 @@ const loginUserRouter = require('./router/login_router')
 const app = express()
 var port = process.env.PORT || 3000
 app.use(express.json())
+app.use('/api/activities', activityRouter)
 app.use('/api', loginUserRouter)
 
 
