@@ -40,6 +40,12 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"/>
 
+        <TextView
+            android:id="@+id/activity_item_limit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"/>
+
     </LinearLayout>
 
 

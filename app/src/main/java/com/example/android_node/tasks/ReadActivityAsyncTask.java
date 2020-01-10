@@ -42,21 +42,22 @@ public class ReadActivityAsyncTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String str) {
-        ArrayList<Activity> activities = new ArrayList<>();
+
         try {
             JSONObject j = new JSONObject(str);
+            System.out.println(j.toString());
             JSONArray jsonArray = j.getJSONArray("result");
             JSONObject json;
             json = jsonArray.getJSONObject(0);
             Activity act = new Activity();
             act.setId(json.getInt("id"));
             act.setName(json.getString("name"));
-            act.setAdmin(json.getString("name"));
+            act.setAdmin(json.getInt("admin_id"));
             act.setDescription(json.getString("description"));
             act.setStartDate(json.getString("starttime"));
             act.setEndDate(json.getString("endtime"));
             act.setMaxParticipant(json.getInt("max"));
-            activities.add(act);
+            main.readActivity(act);
         } catch(JSONException e){
             e.printStackTrace();
         }

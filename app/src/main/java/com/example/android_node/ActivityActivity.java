@@ -88,6 +88,7 @@ public class ActivityActivity extends AppCompatActivity implements ActivityOncli
 
     @Override
     public void onActivityClick(View view, int itemIndex) {
+
         if (view == view.findViewById(R.id.btn_readActivity)) {
             Intent i = new Intent(ActivityActivity.this, ActivityReadActivity.class);
             i.putExtra("id", itemIndex);

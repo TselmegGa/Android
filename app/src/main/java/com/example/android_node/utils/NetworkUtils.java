@@ -16,9 +16,11 @@ public final class NetworkUtils {
     public static final String ACTIVITY_URL = "activities";
     public static final String LOGIN_URL = "login";
     public static final String REGISTER_URL = "register";
-    public static final String PARTICIPANT_URL = "register";
+
+    public static final String PARTICIPANT_URL = "Patrticipants";
     //getreq
     public static String sendGET(URL url, String token) throws IOException {
+        System.out.println(url);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("Content-Type", "application/json");
@@ -32,6 +34,7 @@ public final class NetworkUtils {
                     con.getInputStream()));
             String inputLine;
             StringBuffer response = new StringBuffer();
+            System.out.println(response.toString());
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
             }
@@ -55,7 +58,6 @@ public final class NetworkUtils {
                     con.getInputStream()));
             String inputLine;
             StringBuffer response = new StringBuffer();
-
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
             }

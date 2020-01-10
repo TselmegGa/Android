@@ -20,5 +20,6 @@
     <string name="participants_limit">Participants limit</string>
     <string name="submit">Submit</string>
     <string name="log_out">Log Out</string>
+    <string name="this_is_actcity">This is actcity:</string>
 
 </resources>
