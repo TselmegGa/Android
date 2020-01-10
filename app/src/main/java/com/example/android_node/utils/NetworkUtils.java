@@ -22,11 +22,26 @@ public final class NetworkUtils {
     public static final String ACTIVITY_URL = "activities";
     public static final String LOGIN_URL = "login";
     public static final String REGISTER_URL = "register";
+    private static final String READACTIVITY_URL = "api/activities/:id";
 
 
     public static URL activityUrl() {
         Uri builtUri = Uri.parse(BASE_URL).buildUpon()
                 .appendPath(ACTIVITY_URL)
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e){
+            e.printStackTrace();
+        }
+        return url;
+    }
+
+    public static URL readActivityUrl() {
+        Uri builtUri = Uri.parse(BASE_URL).buildUpon()
+                .appendPath(READACTIVITY_URL)
                 .build();
 
         URL url = null;

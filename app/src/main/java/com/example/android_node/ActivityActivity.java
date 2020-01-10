@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,13 +14,23 @@ import com.example.android_node.tasks.GetActivityAsyncTask;
 
 import java.util.List;
 
-public class ActivityActivity extends AppCompatActivity{
+public class ActivityActivity extends AppCompatActivity implements ActivityOnclickHandler{
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     Button readButton;
+    private int itemId;
+
+    @Override
+    public void onActivityClick(View view, int itemIndex) {
+        if (view == view.findViewById(R.id.btn_readActivity)){
+            Intent i = new Intent(ActivityActivity.this, ActivityReadActivity.class);
+            i.putExtra("id", itemIndex);
+            startActivity(i);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,17 +50,10 @@ public class ActivityActivity extends AppCompatActivity{
         activityAsyncTask.execute("Get all activities");
 
         // when task is running, adapter will set the data
-        mAdapter = new ActivityRecycleViewAdapter((List<Activity>) activityAsyncTask);
+        mAdapter = new ActivityRecycleViewAdapter((List<Activity>) activityAsyncTask, this);
         //connect it to the recyclerView
         mRecyclerView.setAdapter(mAdapter);
 
-        readButton = findViewById(R.id.btn_readActivity);
-        readButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // start new activity the displays the activity
-                // maka the readactivity asynctask
-            }
-        });
+
     }
 }

@@ -3,6 +3,7 @@ package com.example.android_node.models;
 import java.util.ArrayList;
 
 public class User {
+    private int id;
     private String firstname;
     private String lastname;
     private String email;
@@ -18,6 +19,14 @@ public class User {
         this.lastname = lastname;
         this.email = email;
         this.place = place;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstname() {
