@@ -12,6 +12,7 @@
     <string name="details">Details</string>
     <string name="delete">Delete</string>
     <string name="add_new_activity">add new activity</string>
+    <string name="add_new_participant">add new participant</string>
     <string name="admin">admin</string>
     <string name="name">name</string>
     <string name="description">description</string>
@@ -19,6 +20,7 @@
     <string name="endDate">End date</string>
     <string name="participants_limit">Participants limit</string>
     <string name="submit">Submit</string>
+    <string name="participant">Participants</string>
     <string name="log_out">Log Out</string>
     <string name="this_is_actcity">This is actcity:</string>
 

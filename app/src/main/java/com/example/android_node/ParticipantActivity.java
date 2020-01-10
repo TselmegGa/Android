@@ -1,10 +1,5 @@
 package com.example.android_node;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,14 +7,20 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_node.models.Activity;
+import com.example.android_node.models.User;
 import com.example.android_node.tasks.GetActivityAsyncTask;
+import com.example.android_node.tasks.GetParticipantAsyncTask;
 
 import java.util.List;
 
-public class ActivityActivity extends AppCompatActivity implements ActivityOnclickHandler {
+public class ParticipantActivity extends AppCompatActivity implements ParticipantOnclickHandler {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -30,26 +31,27 @@ public class ActivityActivity extends AppCompatActivity implements ActivityOncli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_view);
+        setContentView(R.layout.participant_list_view);
         sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);
 
         //obtain a handle to the object
-        mRecyclerView = findViewById(R.id.recycler_view_activity_list);
+        mRecyclerView = findViewById(R.id.recycler_view_participant_list);
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);
         //connect it to a layout manager
         mRecyclerView.setLayoutManager(mLayoutManager);
-
+        Intent intent = getIntent();
+        String id = intent.getExtras().get("id").toString();
         // specify an adapter
-        GetActivityAsyncTask activityAsyncTask = new GetActivityAsyncTask(ActivityActivity.this);
-        activityAsyncTask.execute(token);
+        GetParticipantAsyncTask activityAsyncTask = new GetParticipantAsyncTask(ParticipantActivity.this);
+        activityAsyncTask.execute(token, id);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_activities_list, menu);
+        inflater.inflate(R.menu.menu_participant_list, menu);
         return true;
     }
 
@@ -79,9 +81,9 @@ public class ActivityActivity extends AppCompatActivity implements ActivityOncli
         }
     }
 
-    public void linkAdapter(List<Activity> activities) {
+    public void linkAdapter(List<User> users) {
         // when task is running, adapter will set the data
-        mAdapter = new ActivityRecycleViewAdapter(activities, this);
+        mAdapter = new ParticipantRecycleViewAdapter(users, this);
         //connect it to the recyclerView
         mRecyclerView.setAdapter(mAdapter);
     }
@@ -89,13 +91,13 @@ public class ActivityActivity extends AppCompatActivity implements ActivityOncli
     @Override
     public void onActivityClick(View view, int itemIndex) {
 
-        if (view == view.findViewById(R.id.btn_readActivity)) {
-            Intent i = new Intent(ActivityActivity.this, ActivityReadActivity.class);
+        if (view == view.findViewById(R.id.btn_readUser)) {
+            Intent i = new Intent(ParticipantActivity.this, ActivityReadActivity.class);
             i.putExtra("id", itemIndex);
             startActivity(i);
         }
         if (view == view.findViewById(R.id.btn_getParticipants)) {
-            Intent i = new Intent(ActivityActivity.this, ParticipantActivity.class);
+            Intent i = new Intent(ParticipantActivity.this, ActivityReadActivity.class);
             i.putExtra("id", itemIndex);
             startActivity(i);
         }

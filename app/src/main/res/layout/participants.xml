@@ -12,7 +12,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/activity_item_id"
+            android:id="@+id/participant_id"
             android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,34 +20,28 @@
 
 
         <TextView
-            android:id="@+id/activity_item_name"
+            android:id="@+id/participant_first_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"/>
 
         <TextView
-            android:id="@+id/activity_item_description"
+            android:id="@+id/participant_last_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"/>
 
         <TextView
-            android:id="@+id/activity_item_startDate"
+            android:id="@+id/participant_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"/>
 
         <TextView
-            android:id="@+id/activity_item_endDate"
+            android:id="@+id/participant_place"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"/>
-        <TextView
-            android:id="@+id/activity_item_limit"
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-            android:text="@string/participants_limit" />
 
 
         <LinearLayout
@@ -55,19 +49,11 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-
-
             <Button
-                android:id="@+id/btn_readActivity"
+                android:id="@+id/btn_readUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/details" />
-
-            <Button
-                android:id="@+id/btn_getParticipants"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/participant" />
 
         </LinearLayout>
 

@@ -42,7 +42,6 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
         // - replaces the contents of the view with that element
         final Activity activity = mActivities.get(position);
 
-        holder.admin.setId(activity.getAdmin());
         holder.name.setText(activity.getName());
         holder.description.setText(activity.getDescription());
         holder.startDate.setText((CharSequence) activity.getStartDate());
@@ -78,12 +77,11 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
 
         private TextView id;
 
-        private Button details;
+        private Button details, part;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            admin = (TextView) itemView.findViewById(R.id.activity_item_admin);
             name = (TextView) itemView.findViewById(R.id.activity_item_name);
             description = (TextView) itemView.findViewById(R.id.activity_item_description);
             startDate = (TextView) itemView.findViewById(R.id.activity_item_startDate);
@@ -91,6 +89,13 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
             id = (TextView) itemView.findViewById(R.id.activity_item_id);
 
             details = (Button) itemView.findViewById(R.id.btn_readActivity);
+            part = (Button) itemView.findViewById(R.id.btn_getParticipants);
+            part.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mClickHandler.onActivityClick(v.findViewById(R.id.btn_getParticipants), Integer.parseInt(id.getText().toString()));
+                }
+            });
             details.setOnClickListener(this);
         }
 

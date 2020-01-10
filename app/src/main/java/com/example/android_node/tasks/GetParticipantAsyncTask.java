@@ -3,6 +3,7 @@ package com.example.android_node.tasks;
 import android.os.AsyncTask;
 
 import com.example.android_node.ActivityActivity;
+import com.example.android_node.ParticipantActivity;
 import com.example.android_node.models.Activity;
 import com.example.android_node.models.User;
 import com.example.android_node.utils.NetworkUtils;
@@ -18,9 +19,9 @@ import java.util.ArrayList;
 
 public class GetParticipantAsyncTask extends AsyncTask<String, Void, String> {
 
-    private ActivityActivity main;
+    private ParticipantActivity main;
 
-    public GetParticipantAsyncTask(ActivityActivity main) {
+    public GetParticipantAsyncTask(ParticipantActivity main) {
         this.main = main;
     }
 
@@ -56,6 +57,7 @@ public class GetParticipantAsyncTask extends AsyncTask<String, Void, String> {
                         json.getString("email"), json.getString("location"));
                 users.add(user);
             }
+            main.linkAdapter(users);
         } catch(JSONException e){
             e.printStackTrace();
         }
