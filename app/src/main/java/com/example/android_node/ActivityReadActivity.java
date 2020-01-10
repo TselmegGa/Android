@@ -31,5 +31,6 @@ public class ActivityReadActivity extends AppCompatActivity {
         //get the data
         ReadActivityAsyncTask readActivityAsyncTask= new ReadActivityAsyncTask(ActivityReadActivity.this);
         readActivityAsyncTask.execute(jsonString);
+
     }
 }
