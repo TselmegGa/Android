@@ -58,10 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 task.execute(jsonString);
 
                 // when task is running then start next actvitiy
-                if(task.getStatus() != AsyncTask.Status.RUNNING){
-                    Intent i = new Intent(MainActivity.this, ActivityActivity.class);
-                    startActivity(i);
-                }
+
             }
         });
     }
@@ -74,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void register(View view) {
         Intent i = new Intent(this, RegisterActivity.class);
+        startActivity(i);
+    }
+
+    public void login(){
+        Intent i = new Intent(MainActivity.this, ActivityActivity.class);
         startActivity(i);
     }
 }

@@ -66,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         finish();
     }
-    public void back() {
+    public void main() {
         // kills activity and takes user to mainactivity
         Intent intent = new Intent(this, MainActivity.class);
         finish();

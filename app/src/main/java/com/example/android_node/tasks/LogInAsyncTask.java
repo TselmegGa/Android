@@ -45,6 +45,7 @@ public class LogInAsyncTask extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String str) {
         String token = null;
         try {
+
             JSONObject json = new JSONObject(str);
             token = json.getString("token");
         } catch(JSONException e){
@@ -52,6 +53,6 @@ public class LogInAsyncTask extends AsyncTask<String, Void, String> {
         }
         System.out.println("POST Response Code :: " + token);
         main.storeToken(token);
-        //
+        main.login();
     }
 }

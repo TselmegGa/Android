@@ -14,23 +14,11 @@ import com.example.android_node.tasks.GetActivityAsyncTask;
 
 import java.util.List;
 
-public class ActivityActivity extends AppCompatActivity implements ActivityOnclickHandler{
+public class ActivityActivity extends AppCompatActivity implements ActivityOnclickHandler {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
-    Button readButton;
-    private int itemId;
-
-    @Override
-    public void onActivityClick(View view, int itemIndex) {
-        if (view == view.findViewById(R.id.btn_readActivity)){
-            Intent i = new Intent(ActivityActivity.this, ActivityReadActivity.class);
-            i.putExtra("id", itemIndex);
-            startActivity(i);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +36,20 @@ public class ActivityActivity extends AppCompatActivity implements ActivityOncli
         // specify an adapter
         GetActivityAsyncTask activityAsyncTask = new GetActivityAsyncTask(ActivityActivity.this);
         activityAsyncTask.execute("Get all activities");
+    }
+    @Override
+    public void onActivityClick(View view, int itemIndex) {
+        if (view == view.findViewById(R.id.btn_readActivity)) {
+            Intent i = new Intent(ActivityActivity.this, ActivityReadActivity.class);
+            i.putExtra("id", itemIndex);
+            startActivity(i);
+        }
+    }
 
+    public void linkAdapter(List<Activity> activities) {
         // when task is running, adapter will set the data
-        mAdapter = new ActivityRecycleViewAdapter((List<Activity>) activityAsyncTask, this);
+        mAdapter = new ActivityRecycleViewAdapter(activities, this);
         //connect it to the recyclerView
         mRecyclerView.setAdapter(mAdapter);
-
-
     }
 }

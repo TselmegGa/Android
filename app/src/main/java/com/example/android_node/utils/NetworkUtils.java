@@ -54,10 +54,11 @@ public final class NetworkUtils {
     }
 
     //getreq
-    public static void sendGET(URL url) throws IOException {
+    public static String sendGET(URL url) throws IOException {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("Content-Type", "application/json");
+        con.setRequestProperty("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3RfbmFtZSI6ImJvYiIsImxhc3RfbmFtZSI6InRvbSIsImVtYWlsIjoidG9tQHRvbS5jb20iLCJwYXNzd29yZCI6IjEyMzQ1NiIsImxvY2F0aW9uIjoiYm9zdG9uIiwiaWF0IjoxNTc4NjcwODg5LCJleHAiOjE1Nzg2NzQ0ODl9.QnyeP8oGdHpingdepuKRyJogKTDWGhbGQ6uiVidbpsQ");
         int responseCode = con.getResponseCode();
         System.out.println("GET Response Code :: " + responseCode);
         if (responseCode == HttpURLConnection.HTTP_OK) { // success
@@ -72,9 +73,9 @@ public final class NetworkUtils {
             in.close();
 
             // print result
-            System.out.println(response.toString());
+            return response.toString();
         } else {
-            System.out.println("GET request not worked");
+            return "GET request not worked";
         }
 
     }

@@ -44,7 +44,7 @@ public class RegisterAsyncTask extends AsyncTask<String, Void, String>{
         if(str.equals("POST Failed")){
             //
         }else {
-            main.back();
+            main.main();
 
         }
     }

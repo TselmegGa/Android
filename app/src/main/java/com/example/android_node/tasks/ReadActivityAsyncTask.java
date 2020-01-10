@@ -26,7 +26,7 @@ public class ReadActivityAsyncTask extends AsyncTask<String, Void, Activity> {
         String response = null;
 
         try {
-            response = NetworkUtils.sendGET(url);
+
 
                 Activity activity = new Activity();
 
@@ -37,7 +37,6 @@ public class ReadActivityAsyncTask extends AsyncTask<String, Void, Activity> {
                 activity.setEndDate(jsonActcity.getString("endDate"));
                 activity.setMaxParticipant(jsonActcity.getInt("maxParticipants"));
 
-                activity
         }catch (Exception e){
             e.printStackTrace();
         }
