@@ -49,11 +49,19 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
     }
 
     @Override
-    public int getItemCount() {
-        return 0;
+    public long getItemId(int position) {
+        return super.getItemId(position);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    @Override
+    public int getItemCount() {
+        return mActivities.size();
+
+    }
+
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
         // ViewHolder is the view of a activity_list_view
         // one drink_list_item contains 3 views
         // Provide a reference to each view in the activity_list_item
@@ -63,6 +71,7 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
         public TextView description;
         public TextView startDate;
         public TextView endDate;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

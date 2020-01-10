@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Activity {
+    private int id;
     private String admin;
     private String name;
     private String description;
@@ -17,6 +18,14 @@ public class Activity {
     public static List<Activity> getAllActivities(){
         //get all activities from database
         return null;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getAdmin() {
