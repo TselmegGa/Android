@@ -63,6 +63,17 @@ public class ActivityActivity extends AppCompatActivity implements ActivityOncli
                     startActivity(intent);
 
                 return true;
+            case R.id.sign_out:
+
+                Intent i = new Intent(this, MainActivity.class);
+                startActivity(i);
+
+                //remove token
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove("token");
+                editor.apply();
+
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

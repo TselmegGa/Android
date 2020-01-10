@@ -19,5 +19,6 @@
     <string name="endDate">End date</string>
     <string name="participants_limit">Participants limit</string>
     <string name="submit">Submit</string>
+    <string name="log_out">Log Out</string>
 
 </resources>
