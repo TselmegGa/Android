@@ -32,6 +32,8 @@ public class ActivityActivity extends AppCompatActivity implements ActivityOncli
         }
     }
 
+    Button details;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +56,15 @@ public class ActivityActivity extends AppCompatActivity implements ActivityOncli
         //connect it to the recyclerView
         mRecyclerView.setAdapter(mAdapter);
 
+    @Override
+    public void onActivityClick(View view, int itemIndex) {
+        System.out.println("read");
+        if (view == view.findViewById(R.id.btn_readActivity)) {
+            System.out.println("this is read button");
+            Intent i = new Intent(ActivityActivity.this, ActivityReadActivity.class);
+            i.putExtra("id", itemIndex);
+            startActivity(i);
+        }
 
     }
 }

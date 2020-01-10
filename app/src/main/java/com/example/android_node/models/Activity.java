@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Activity {
     private int id;
-    private String admin;
+    private int admin;
     private String name;
     private String description;
     private String startDate;
@@ -28,11 +28,11 @@ public class Activity {
         this.id = id;
     }
 
-    public String getAdmin() {
+    public int getAdmin() {
         return admin;
     }
 
-    public void setAdmin(String admin) {
+    public void setAdmin(int admin) {
         this.admin = admin;
     }
 

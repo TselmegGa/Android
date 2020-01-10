@@ -22,8 +22,48 @@ public final class NetworkUtils {
     public static final String ACTIVITY_URL = "activities";
     public static final String LOGIN_URL = "login";
     public static final String REGISTER_URL = "register";
-    private static final String READACTIVITY_URL = "api/activities/:id";
 
+    public static final String PARTICIPANT_URL = "register";
+    //getreq
+    public static String sendGET(URL url, String token) throws IOException {
+        System.out.println(url);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("Content-Type", "application/json");
+
+        con.setRequestProperty("Authorization", "Bearer " + token);
+        
+        int responseCode = con.getResponseCode();
+        System.out.println("GET Response Code :: " + responseCode);
+        if (responseCode == HttpURLConnection.HTTP_OK) { // success
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                    con.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            System.out.println(response.toString());
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            // print result
+            return response.toString();
+        } else {
+            return "GET request not worked";
+        }
+    }
+    public static String sendDelete (URL url, String token) throws IOException{
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("DELETE");
+        con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        con.setRequestProperty("Authorization", "Bearer " + token);
+        int responseCode = con.getResponseCode();
+        System.out.println("Delete Response Code :: " + responseCode);
+        con.connect();
+        if (responseCode == HttpURLConnection.HTTP_OK) { //success
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                    con.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
 
     public static URL activityUrl() {
         Uri builtUri = Uri.parse(BASE_URL).buildUpon()

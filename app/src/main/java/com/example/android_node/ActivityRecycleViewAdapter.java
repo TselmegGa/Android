@@ -3,6 +3,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,11 +43,12 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
         // - replaces the contents of the view with that element
         final Activity activity = mActivities.get(position);
 
-        holder.admin.setText(activity.getAdmin());
+        holder.admin.setId(activity.getAdmin());
         holder.name.setText(activity.getName());
         holder.description.setText(activity.getDescription());
         holder.startDate.setText((CharSequence) activity.getStartDate());
         holder.endDate.setText((CharSequence) activity.getEndDate());
+        holder.id.setText( "" + activity.getId());
 
 
     }
@@ -69,11 +71,15 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
         // one drink_list_item contains 3 views
         // Provide a reference to each view in the activity_list_item
 
-        public TextView admin;
-        public TextView name;
-        public TextView description;
-        public TextView startDate;
-        public TextView endDate;
+        private TextView admin;
+        private TextView name;
+        private TextView description;
+        private TextView startDate;
+        private TextView endDate;
+
+        private TextView id;
+
+        private Button details;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -83,12 +89,15 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
             description = (TextView) itemView.findViewById(R.id.activity_item_description);
             startDate = (TextView) itemView.findViewById(R.id.activity_item_startDate);
             endDate = (TextView) itemView.findViewById(R.id.activity_item_endDate);
+            id = (TextView) itemView.findViewById(R.id.activity_item_id);
+
+            details = (Button) itemView.findViewById(R.id.btn_readActivity);
+            details.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            int index = getAdapterPosition();
-            mClickHandler.onActivityClick(v, index);
+            mClickHandler.onActivityClick(v.findViewById(R.id.btn_readActivity), Integer.parseInt(id.getText().toString()));
         }
     }
 }
