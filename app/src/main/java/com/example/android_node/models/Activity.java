@@ -64,7 +64,7 @@ public class Activity {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(String    endDate) {
         this.endDate = endDate;
     }
 

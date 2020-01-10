@@ -21,7 +21,9 @@ public final class NetworkUtils {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("Content-Type", "application/json");
+
         con.setRequestProperty("Authorization", "Bearer " + token);
+        
         int responseCode = con.getResponseCode();
         System.out.println("GET Response Code :: " + responseCode);
         if (responseCode == HttpURLConnection.HTTP_OK) { // success
