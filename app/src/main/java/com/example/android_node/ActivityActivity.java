@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.android_node.models.Activity;
+import com.example.android_node.tasks.DeleteActivityAsyncTask;
 import com.example.android_node.tasks.GetActivityAsyncTask;
 
 import java.util.List;
@@ -93,6 +94,13 @@ public class ActivityActivity extends AppCompatActivity implements ActivityOncli
             Intent i = new Intent(ActivityActivity.this, ActivityReadActivity.class);
             i.putExtra("id", itemIndex);
             startActivity(i);
+        }else if (view == view.findViewById(R.id.btn_deleteActivity)){
+            System.out.println("delete");
+            sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+            String token = sharedPreferences.getString("token", null);
+
+            DeleteActivityAsyncTask remove = new DeleteActivityAsyncTask(this);
+            remove.execute(token, "" + itemIndex);
         }
     }
 }

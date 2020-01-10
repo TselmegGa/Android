@@ -76,6 +76,7 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
         private TextView id;
 
         private Button details;
+        private Button remove;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -87,12 +88,14 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
             id = (TextView) itemView.findViewById(R.id.activity_item_id);
 
             details = (Button) itemView.findViewById(R.id.btn_readActivity);
+            remove = (Button) itemView.findViewById(R.id.btn_deleteActivity);
+            remove.setOnClickListener(this);
             details.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            mClickHandler.onActivityClick(v.findViewById(R.id.btn_readActivity), Integer.parseInt(id.getText().toString()));
+            mClickHandler.onActivityClick(v, Integer.parseInt(id.getText().toString()));
         }
     }
 }
