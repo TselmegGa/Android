@@ -3,6 +3,7 @@ package com.example.android_node.tasks;
 import android.os.AsyncTask;
 
 import com.example.android_node.ActivityActivity;
+import com.example.android_node.AddActivity;
 import com.example.android_node.utils.NetworkUtils;
 
 import java.io.IOException;
@@ -11,9 +12,9 @@ import java.net.URL;
 
 public class CreateActivityAsyncTask extends AsyncTask<String, Void, String> {
 
-    private ActivityActivity main;
+    private AddActivity main;
 
-    public CreateActivityAsyncTask(ActivityActivity main) {
+    public CreateActivityAsyncTask(AddActivity main) {
         this.main = main;
     }
 
