@@ -34,7 +34,7 @@ public class GetActivityAsyncTask extends AsyncTask<String, Void, String> {
         }
 
         try {
-            response = NetworkUtils.sendGET(url);
+            response = NetworkUtils.sendGET(url, str[0]);
 
         }catch (Exception e){
             e.printStackTrace();

@@ -22,13 +22,13 @@ public class DeleteActivityAsyncTask extends AsyncTask<String, Void, String> {
         URL url = null;
         String response = null;
         try {
-            url = new URL(NetworkUtils.BASE_URL + NetworkUtils.DELETEACTIVITY_URL);
+            url = new URL(NetworkUtils.BASE_URL + NetworkUtils.ACTIVITY_URL + "/" + strings[1]);
         } catch (MalformedURLException e){
             e.printStackTrace();
         }
 
         try {
-            response = NetworkUtils.sendDelete(url);
+            response = NetworkUtils.sendDelete(url, strings[0]);
         } catch (IOException e) {
             e.printStackTrace();
         }

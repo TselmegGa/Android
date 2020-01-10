@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,11 +20,13 @@ public class ActivityActivity extends AppCompatActivity implements ActivityOncli
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
-
+        sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
 
         //obtain a handle to the object
         mRecyclerView = findViewById(R.id.recycler_view_activity_list);
@@ -34,7 +37,7 @@ public class ActivityActivity extends AppCompatActivity implements ActivityOncli
 
         // specify an adapter
         GetActivityAsyncTask activityAsyncTask = new GetActivityAsyncTask(ActivityActivity.this);
-        activityAsyncTask.execute("Get all activities");
+        activityAsyncTask.execute(token);
     }
     @Override
     public void onActivityClick(View view, int itemIndex) {
