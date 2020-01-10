@@ -68,8 +68,6 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
         // ViewHolder is the view of a activity_list_view
         // one drink_list_item contains 3 views
         // Provide a reference to each view in the activity_list_item
-
-        private TextView admin;
         private TextView name;
         private TextView description;
         private TextView startDate;
@@ -77,7 +75,10 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
 
         private TextView id;
 
+
         private Button details, part;
+        private Button remove;
+
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -96,12 +97,14 @@ public class ActivityRecycleViewAdapter  extends RecyclerView.Adapter<ActivityRe
                     mClickHandler.onActivityClick(v.findViewById(R.id.btn_getParticipants), Integer.parseInt(id.getText().toString()));
                 }
             });
+            remove = (Button) itemView.findViewById(R.id.btn_deleteActivity);
+            remove.setOnClickListener(this);
             details.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            mClickHandler.onActivityClick(v.findViewById(R.id.btn_readActivity), Integer.parseInt(id.getText().toString()));
+            mClickHandler.onActivityClick(v, Integer.parseInt(id.getText().toString()));
         }
     }
 }

@@ -3,6 +3,7 @@ package com.example.android_node.tasks;
 import android.os.AsyncTask;
 
 import com.example.android_node.ActivityActivity;
+import com.example.android_node.ActivityReadActivity;
 import com.example.android_node.utils.NetworkUtils;
 
 import java.io.IOException;
@@ -11,9 +12,9 @@ import java.net.URL;
 
 public class UpdateActivityAsyncTask extends AsyncTask<String, Void, String> {
 
-    private ActivityActivity main;
+    private ActivityReadActivity main;
 
-    public UpdateActivityAsyncTask(ActivityActivity main) {
+    public UpdateActivityAsyncTask(ActivityReadActivity main) {
         this.main = main;
     }
 
@@ -28,11 +29,16 @@ public class UpdateActivityAsyncTask extends AsyncTask<String, Void, String> {
         }
 
         try {
-            response = NetworkUtils.sendPOSTWithToken(url, strings[0], strings[1]);
+            response = NetworkUtils.sendPUT(url, strings[0], strings[1]);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         return response;
+    }
+
+    @Override
+    protected void onPostExecute(String s) {
+        main.startNextActivity();
     }
 }
