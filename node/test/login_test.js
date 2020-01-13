@@ -21,6 +21,7 @@ describe('Login API POST', () => {
       .end((err, res) => {
 
         res.should.have.status(200)
+        res.body.should.have.property('token').that.is.a('string')
         done()
       })
   })
