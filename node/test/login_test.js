@@ -7,27 +7,20 @@ const server = require('../src/server')
 chai.should()
 chai.use(chaiHttp)
 
-const endpointToTest = '/movies'
+const endpointToTest = '/api/login'
 
-describe('Movies API POST', () => {
-  it('should return a valid id when posting a valid object', done => {
-    chai
-      .request(server)
+describe('Login API POST', () => {
+  it('should return a valid token when posting a valid login request', done => {
+    chai.request(server.server)
       .post(endpointToTest)
+      .set('Content-Type', 'application/json')
       .send({
-        title: 'finding nemo',
-        description: 'beschrijving',
-        year: 2004,
-        actors: []
+        email: 'tom@tom.com',
+        password: 123456
       })
       .end((err, res) => {
+
         res.should.have.status(200)
-        res.body.should.be.a('object')
-        res.body.result.should.have.property('title').that.is.a('string')
-        res.body.result.should.have.property('description').equals('beschrijving')
-        res.body.result.should.have.property('year').equals(2004)
-        res.body.result.should.have.property('actors').that.is.an('array')
-        res.body.result.should.not.have.property('password')
         done()
       })
   })
