@@ -35,7 +35,6 @@ describe('Login API POST', () => {
 
 describe('Activity API GET', () => {
   it('should return an array of Activities', done => {
-    const token = null;
     chai.request(server.server)
       .post(endpointToTest)
       .set('Content-Type', 'application/json')
@@ -49,7 +48,33 @@ describe('Activity API GET', () => {
         .set('Content-Type', 'application/json')
         .set('Authorization', 'Bearer '+ res.body.token)
         .end((err, res) => {
-          console.log(token)
+
+          res.should.have.status(200)
+          console.log(res.body)
+          res.body.should.have.property('result').that.is.a('array')
+          done()
+        })
+      })
+
+
+  })
+})
+describe('Activity API GET by id', () => {
+  it('should return an array of Activities', done => {
+    chai.request(server.server)
+      .post(endpointToTest)
+      .set('Content-Type', 'application/json')
+      .send({
+        email: 'tom@tom.com',
+        password: 123456
+      })
+      .end((err, res) => {
+        chai.request(server.server)
+        .get(endpointToActivity +"/17")
+        .set('Content-Type', 'application/json')
+        .set('Authorization', 'Bearer '+ res.body.token)
+        .end((err, res) => {
+
           res.should.have.status(200)
           console.log(res.body)
           res.body.should.have.property('result').that.is.a('array')
@@ -65,6 +90,7 @@ describe('Activity API GET', () => {
 describe('Activity API PUT', () => {
   it('should return the updated Activity when providing valid input', done => {
     // Write your test here
+
     done()
   })
 })
