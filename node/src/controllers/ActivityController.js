@@ -33,7 +33,8 @@ var create = (req, res, next) => {
       .input('starttime', req.body.starttime)
       .input('endtime', req.body.endtime)
       .input('max', sql.Int, req.body.max)
-      .query('insert into dbo.Activity values (@name, @description, @starttime, @endtime, @max)')
+      .input('admin_id', sql.Int, req.user.id)
+      .query('insert into dbo.Activity values (@name, @description, @starttime, @endtime, @max, @admin_id)')
  }).then(result =>{
    res.status(200).json({ result:result.recordset})
  }).catch(err =>{

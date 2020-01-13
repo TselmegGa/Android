@@ -8,7 +8,7 @@ var loginUser = (req, res, next) => {
   conn.then(pool =>{
     return pool.request()
     .input('input', req.body.email)
-    .query('SELECT id, first_name, last_name, email, location from dbo.[User] where email = @input')
+    .query('SELECT * from dbo.[User] where email = @input')
   }).then(result =>{
     let user = result.recordset[0].email == req.body.email ? result.recordset[0] : null
     if(user == null){
@@ -16,7 +16,7 @@ var loginUser = (req, res, next) => {
     }
     try {
       if(req.body.password == result.recordset[0].password){
-        let token = jwt.sign(user, privateKey, {expiresIn: "60m"})
+        let token = jwt.sign(user, privateKey, {expiresIn: "360m"})
         res.status(200).json({token: token})
       }
       }catch{
